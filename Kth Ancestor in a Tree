@@ -1,0 +1,32 @@
+Node* sol(Node *root,int &k,int node){
+    if(root==NULL) return NULL;
+    if(root->data==node) return root;
+    Node *la=sol(root->left,k,node);
+    Node *ra=sol(root->right,k,node);
+    if(la!=NULL &&ra==NULL)
+    {
+        k--;
+        if(k<=0){
+            k=INT_MAX;
+            return root;
+        }
+        return la;
+}
+if(la==NULL && ra!=NULL)
+    {
+        k--;
+        if(k<=0){
+            k=INT_MAX;
+            return root;
+        }
+        return ra;
+}
+  return NULL;
+}
+int kthAncestor(Node *root, int k, int node)
+{
+    // Code here
+    Node* a=sol(root,k,node);
+    if(a==NULL||a->data==node) return -1;
+     else return a->data;
+}
